@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+/*
+  Layout contract for the learner shell — the same one as the admin shell:
+    .dashboard-viewport  = the only page-level scroll container (horizontal, for
+                           the min-width canvas on narrow screens).
+    .dashboard-canvas    = exactly one viewport tall, so the shell never scrolls
+                           as a whole. Sidebar and topbar therefore stay put.
+    Content region       = the single vertical scroll surface.
+*/
+.dashboard-viewport {
+  position: fixed;
+  inset: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: #f4f6f4;
+}
+
+.dashboard-canvas {
+  width: 100% !important;
+  min-width: 1180px;
+  min-height: 0;
+  height: 100% !important;
+  /* Override the design's clip so the sidebar can stick to the viewport
+     horizontally while .dashboard-viewport scrolls sideways. */
+  overflow: visible !important;
+}
+
+.dashboard-canvas a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.dashboard-canvas a:focus-visible {
+  outline: 2px solid #95e85f;
+  outline-offset: -2px;
+}
+
+/* Sidebar: pinned to the left, never scrolls with the main content. */
+.dashboard-canvas > [data-pen-name="User Sidebar"] {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Nav rows are the clickable regions. The active row's fill is baked into each
+   frame's design, so hover only needs to light up the inactive ones. */
+.dashboard-canvas > [data-pen-name="User Sidebar"] a:hover {
+  background: #ffffff14;
+}
+
+/* Main column: claims the remaining width and clips, so its content area scrolls. */
+.dashboard-canvas > [data-pen-name="User Main Area"] {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Topbar sits above the scroll region and keeps its height. */
+.dashboard-canvas > [data-pen-name="User Main Area"] > [data-pen-name="User Topbar"] {
+  flex-shrink: 0;
+}
+
+/* Content region = the element following the topbar, whatever the page names it. */
+.dashboard-canvas > [data-pen-name="User Main Area"] > [data-pen-name="User Topbar"] + *,
+.dashboard-canvas > [data-pen-name="User Main Area"] > *:last-child {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #c3ccc6 transparent;
+}
+
+.dashboard-canvas > [data-pen-name="User Main Area"] > *:last-child::-webkit-scrollbar {
+  width: 10px;
+}
+
+.dashboard-canvas > [data-pen-name="User Main Area"] > *:last-child::-webkit-scrollbar-thumb {
+  background: #c3ccc6;
+  border: 3px solid #f4f6f4;
+  border-radius: 999px;
+}
+
+.dashboard-canvas > [data-pen-name="User Main Area"] > *:last-child::-webkit-scrollbar-thumb:hover {
+  background: #a8b3ac;
+}
+
+/* Sign-out control: appended to the sidebar's profile footer by
+   app/user/user.tsx. Sized to the footer's 64px height and tinted from the
+   sidebar's own tokens (#ffffff0a surfaces, #9fb0a6 muted copy) so it reads as
+   part of the drawn design rather than an addition to it. */
+.sign-out {
+  align-self: center;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #9fb0a6;
+  cursor: pointer;
+}
+
+.sign-out:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+.sign-out:focus-visible {
+  outline: 2px solid #178a76;
+  outline-offset: 2px;
+}
+
+.sign-out:disabled {
+  cursor: default;
+  opacity: 0.55;
+}

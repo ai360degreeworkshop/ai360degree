@@ -1,0 +1,33 @@
+/* The mobile artboard uses the same four families as the desktop export. */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@300..700&family=Inter:wght@400;500;600;700&display=swap");
+
+.mobile-viewport {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: #eef2ee;
+}
+
+.mobile-canvas {
+  background: #f7fbf6;
+  box-shadow: 0 0 0 1px #dfe5e0;
+  /* Clear the pinned bottom bar so the footer is not hidden behind it. */
+  padding-bottom: 78px;
+  box-sizing: content-box;
+}
+
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  max-width: 390px;
+  margin: 0 auto;
+  z-index: 20;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-canvas {
+    scroll-behavior: auto;
+  }
+}

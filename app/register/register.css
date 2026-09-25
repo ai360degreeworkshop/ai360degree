@@ -1,0 +1,251 @@
+/* Chrome for the register artboard. Layout comes from the desktop login frame the
+   page clones (see app/register/page.tsx), so this file only carries the
+   interactive resets the export cannot express: real form controls, focus rings,
+   and hover states. */
+
+.auth-viewport {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background: #f7fbf6;
+  overflow: hidden;
+}
+
+.auth-canvas {
+  transform-origin: top left;
+}
+
+/* Text fields: the design's frame provides the box, so the input is bare. */
+.auth-input {
+  flex: 1 1 0;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  background: transparent;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 13px;
+  color: #102019;
+}
+
+.auth-input::placeholder {
+  color: #89958e;
+}
+
+.auth-input:focus-visible {
+  outline: 2px solid #178a76;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.auth-input-action {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-input-action:focus-visible {
+  outline: 2px solid #178a76;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Checkbox: the design draws the ticked state, so the input drives it. */
+.auth-checkbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.auth-checkbox input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.auth-checkbox svg {
+  opacity: 0;
+}
+
+.auth-checkbox input:checked + svg {
+  opacity: 1;
+}
+
+.auth-checkbox input:not(:checked) {
+  background: #ffffff;
+}
+
+.auth-checkbox:has(input:not(:checked)) {
+  background: #ffffff;
+  border: 1px solid #dfe5e0;
+}
+
+.auth-checkbox input:focus-visible + svg {
+  outline: 2px solid #178a76;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.auth-submit,
+.auth-google {
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+  width: 100%;
+}
+
+.auth-submit:hover {
+  background: #17836c;
+}
+
+.auth-google:hover {
+  background: #f7f9f7;
+}
+
+.auth-submit:focus-visible,
+.auth-google:focus-visible {
+  outline: 2px solid #178a76;
+  outline-offset: 3px;
+}
+
+/* The role tiles double as radio labels. */
+.register-role {
+  position: relative;
+  cursor: pointer;
+}
+
+.register-role:has(input:checked) {
+  box-shadow: inset 0 0 0 2px #178a76;
+}
+
+.register-role:has(input:focus-visible) {
+  outline: 2px solid #178a76;
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Inline form feedback. The message is a sibling inside the form, so it takes the
+   form's own gap rather than absolute positioning. */
+.auth-error {
+  margin: 0;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #b42318;
+}
+
+.auth-notice {
+  margin: 0;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #178a76;
+}
+
+.auth-submit:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+/* Demo credential cards. Pinned to the viewport corner rather than placed in the
+   artboard: the composition is a fixed 1440x1024 frame, so an overlay is the only
+   way to add this without reflowing the drawn design. Rendered only when
+   NEXT_PUBLIC_SHOW_DEMO_CREDENTIALS is "true". */
+.demo-credentials {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 10;
+  width: 236px;
+  padding: 12px;
+  border: 1px solid #dfe5e0;
+  border-radius: 12px;
+  background: #f7f9f7;
+  box-shadow: 0 8px 24px rgba(16, 32, 25, 0.12);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  color: #102019;
+}
+
+.demo-credentials__title {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #718078;
+}
+
+.demo-credentials__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.demo-credentials__card {
+  padding: 8px 10px;
+  border: 1px solid #dfe5e0;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.demo-credentials__role {
+  margin: 0 0 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #178a76;
+}
+
+.demo-credentials__value {
+  margin: 0;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: #34443b;
+  overflow-wrap: anywhere;
+}
+
+.demo-credentials__value--secret {
+  color: #66756d;
+}
+
+.demo-credentials__fill {
+  margin-top: 8px;
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #dfe5e0;
+  border-radius: 8px;
+  background: #f7f9f7;
+  font: inherit;
+  font-size: 11px;
+  color: #102019;
+  cursor: pointer;
+}
+
+.demo-credentials__fill:hover {
+  border-color: #178a76;
+  color: #178a76;
+}
+
+.demo-credentials__fill:focus-visible {
+  outline: 2px solid #178a76;
+  outline-offset: 2px;
+}
