@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "AI 360° — Practical AI Learning",
   description:
-    "Live, mentor-led AI capability building for students, professionals, entrepreneurs, and businesses.",
+    "Live, mentor-led AI workshops where you turn AI into tools you can actually use — for students, professionals, and businesses.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

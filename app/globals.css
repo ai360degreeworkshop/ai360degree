@@ -21,3 +21,17 @@ body {
   display: block;
   border: 0;
 }
+
+.homepage__frame--mobile {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .homepage__frame--desktop {
+    display: none;
+  }
+
+  .homepage__frame--mobile {
+    display: block;
+  }
+}
