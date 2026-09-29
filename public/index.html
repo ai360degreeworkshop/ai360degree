@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI 360° — Practical AI Learning</title>
+    <meta
+      name="description"
+      content="Live, mentor-led AI workshops where you turn AI into tools you can actually use."
+    />
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: #f7fbf6;
+      }
+
+      iframe {
+        display: block;
+        width: 100%;
+        height: 100vh;
+        border: 0;
+      }
+
+      .mobile {
+        display: none;
+      }
+
+      @media (max-width: 767px) {
+        .desktop {
+          display: none;
+        }
+
+        .mobile {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <iframe class="desktop" src="/schoolai-homepage.html" title="AI 360° homepage"></iframe>
+    <iframe class="mobile" src="/mobile-homepage.html" title="AI 360° mobile homepage"></iframe>
+  </body>
+</html>
